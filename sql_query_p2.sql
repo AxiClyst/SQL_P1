@@ -22,7 +22,8 @@ SET SQL_SAFE_UPDATES = 0;
 		total_sale float
 
 		);
- 
+  -- Data Eploration
+
 select count(*) from retail_sales;
 select count(distinct customer_id) from retail_sales;
 select distinct category from retail_sales;
@@ -80,17 +81,6 @@ cogs is null
 or
 total_sale is null;
  
- -- Data Eploration
- 
--- How many total sales we have?
-select count(transactions_id) from retail_sales;
-
--- How many customers we have?
-select count(distinct customer_id) from retail_sales;
-
--- How many categories we have?
-select distinct category from retail_sales;
-
 -- Data analysis & bussiness key problems and answers
 
 -- My Analysis & Findings
