@@ -85,7 +85,7 @@ total_sale is null;
 
 -- My Analysis & Findings
 -- Q.1 Write a SQL query to retrieve all columns for sales made on '2022-11-05
--- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 10 in the month of Nov-2022
+-- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is 4 in the month of Nov-2022
 -- Q.3 Write a SQL query to calculate the total sales (total_sale) for each category.
 -- Q.4 Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.
 -- Q.5 Write a SQL query to find all transactions where the total_sale is greater than 1000.
@@ -100,7 +100,7 @@ select *
 from retail_sales
 where sale_date = '2022-11-05';
 
--- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022
+-- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is 4 in the month of Nov-2022
 select *
 from retail_sales
 where category = 'Clothing'
@@ -139,20 +139,20 @@ quantiy=4;
  order by category asc;
  
  -- Q.7 Write a SQL query to calculate the average sale for each month. Find out best selling month in each year.
-SELECT 
+select 
   year,
   month,
   avg_sales
-FROM (
-  SELECT 
-    EXTRACT(YEAR FROM sale_date) AS year,
-    EXTRACT(MONTH FROM sale_date) AS month,
-    ROUND(AVG(total_sale), 2) AS avg_sales,
-    RANK() OVER (PARTITION BY EXTRACT(YEAR FROM sale_date) ORDER BY AVG(total_sale) DESC) AS sales_rank
-  FROM retail_sales
-  GROUP BY year, month
-) AS ranked_months
-WHERE sales_rank = 1;
+from (
+  select 
+    extract(year from sale_date) as year,
+    extract(month from sale_date) as month,
+    round(avg(total_sale), 2) as avg_sales,
+    rank() over (partition BY extract(year from sale_date) order by avg(total_sale) desc) as sales_rank
+  from retail_sales
+  group by year, month
+) as ranked_months
+where sales_rank = 1;
 
  -- Q.8 Write a SQL query to find the top 5 customers based on the highest total sales 
  select 
