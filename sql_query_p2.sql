@@ -24,6 +24,8 @@ SET SQL_SAFE_UPDATES = 0;
 		);
  
 select count(*) from retail_sales;
+select count(distinct customer_id) from retail_sales;
+select distinct category from retail_sales;
  
  select * from retail_sales
  limit 10;
